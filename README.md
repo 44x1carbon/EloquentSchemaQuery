@@ -4,9 +4,10 @@ Describe items to be acquired using schema.
 
 # Install
 ```
-composer require yonyon/eloquent-schema-query
+composer require yonyon/eloquent-schema-query::dev-master
 ```
 
+# Use Laravel
 After updating composer, add the service provider to the providers array in config/app.php
 ```
 'providers' => [
