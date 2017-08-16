@@ -28,12 +28,16 @@ trait SchemaTrait
         }, ARRAY_FILTER_USE_BOTH);
     }
 
-    function hasAs(): bool
+    function hasAs()
     {
         return !is_null($this->as);
     }
 
     function isEmptySchema(){
         return count($this->schema) == 0;
+    }
+
+    function checkAsType() {
+        return is_string($as) && is_null($as);
     }
 }
