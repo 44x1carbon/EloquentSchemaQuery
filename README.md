@@ -1,0 +1,62 @@
+# EloquentSchemaQuery
+***EloquentSchemaQuery*** is a library that extracts only required items from Eloquent.
+Describe items to be acquired using schema.
+
+# Install
+```
+composer require yonyon/eloquent-schema-query
+```
+
+# Example
+```.php
+$user = User::find(1);
+
+$schema = new Schema([
+  'id',
+  'name',
+  'todos' => new Schema([
+    'name'
+  ])
+]);
+
+$result = EloquentSchemaQuery::get($user, $schema);
+```
+
+# When you want to change the item name
+The second argument to schema is an alias for the item name.
+```.php
+$schema = new Schema([
+  'id',
+  'name',
+  'todos' => new Schema([
+    'name'
+  ], 'todo_list') 
+]);
+```
+
+# FunctionSchema
+FunctionSchema is used when you want to obtain the result of executing eloquent's query, such as the number of todo.
+```.php
+$schema = new Schema([
+  'id',
+  'name',
+  'todo_count' => new FunctionSchema(function($user) {
+    return $user->todos->count();
+  })
+]);
+```
+If the query result is Collection or Model, you have to define schema as the second argument.
+```.php
+$schema = new Schema([
+  'id',
+  'name',
+  'todo_count' => new FunctionSchema(
+    function($user) {
+      return $user->todos;
+    },
+    new Schema([
+      'name'
+    ]
+  )
+]);
+```

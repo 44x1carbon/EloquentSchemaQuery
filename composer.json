@@ -1,0 +1,21 @@
+{
+    "name": "yonyon/eloquent-schema-query",
+    "description": "EloquentSchemaQuery is a library that extracts only required items from Eloquent. ",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "44x1carbon"            
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/database": "^5.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "yonyon\\EloquentSchemaQuery\\": "src/"
+        }
+    }
+}
