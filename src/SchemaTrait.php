@@ -38,6 +38,6 @@ trait SchemaTrait
     }
 
     function checkAsType() {
-        return is_string($as) && is_null($as);
+        return is_string($this->as) && is_null($this->as);
     }
 }

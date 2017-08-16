@@ -13,4 +13,6 @@ interface SchemaInterface
     function functions();
 
     function isEmptySchema();
+
+    function checkAsType();
 }

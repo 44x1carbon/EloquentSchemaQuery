@@ -8,8 +8,8 @@ class Schema implements SchemaInterface
 
     function __construct(array $schema = [], $as = null)
     {
-        if(is_string($as) && is_null($as)) throw new \Exception('$as type is not string or null');
         $this->schema = $schema;
         $this->as = $as;
+        if($this->checkAsType()) throw new \Exception('$as type is not string or null');
     }
 }
