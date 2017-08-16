@@ -7,6 +7,22 @@ Describe items to be acquired using schema.
 composer require yonyon/eloquent-schema-query
 ```
 
+After updating composer, add the service provider to the providers array in config/app.php
+```
+'providers' => [
+    // Other service providers...
+
+    yonyon\EloquentSchemaQuery\Provider\EloquentSchemaQueryServiceProvider::class,
+],
+
+```
+Also, add the facade to the aliases array in your app configuration file:
+
+```
+'EloquentSchemaQuery' => \yonyon\EloquentSchemaQuery\Facades\EloquentSchemaQuery::class,
+```
+
+
 # Example
 ```.php
 $user = User::find(1);
