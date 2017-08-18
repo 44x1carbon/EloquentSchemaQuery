@@ -31,14 +31,10 @@ class EloquentSchemaQuery
         }
 
         foreach ($schema->nests() as $key => $_schema) {
-            if($_schema->isEmptySchema()) throw new \Exception($key . ' arrow schema empty');
-            if($this->has($key, $model)) {
-                $_data = $model->{$key};
-                $key = $_schema->hasAs() ? $_schema->as : $key;
-                $result[$key] = $this->get($_data, $_schema);
-            } else {
-                throw new \Exception(class_basename($model) . ' do not have ' . $key);
-            }
+            if($_schema->isEmptySchema()) throw new \Exception($key . ' arrow schema empty');            
+            $_data = $model->{$key};
+            $key = $_schema->hasAs() ? $_schema->as : $key;
+            $result[$key] = $this->get($_data, $_schema);            
         }
 
         foreach ($schema->functions() as $key => $functionSchema)
@@ -78,7 +74,6 @@ class EloquentSchemaQuery
     private function has($key, Model $model)
     {
         return $model->hasGetMutator($key)
-            || !is_null($model->getAttributeValue($key))
-            || array_key_exists($key, $model->getRelations());
+            || !is_null($model->getAttributeValue($key));            
     }
 }
